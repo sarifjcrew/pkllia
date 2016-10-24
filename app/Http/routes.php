@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+  return view('home');
 });
+
+Route::resource('register', 'RegistrationPtkController');
+Route::resource('bukuinduk', 'BukuIndukPtkController');
+Route::resource('mutasi', 'MutasiPtkController');
