@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::resource('register', 'RegistrationPtkController');
 Route::resource('bukuinduk', 'BukuIndukPtkController');
 Route::resource('mutasi', 'MutasiPtkController');
+
+Route::group(['prefix' => 'api'], function(){
+  Route::resource('ptk', '\App\Pkllia\Api\Ptk');
+});

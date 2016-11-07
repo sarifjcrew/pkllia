@@ -6,6 +6,8 @@
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Form Component | Creative - Bootstrap 3 Responsive Admin Template</title>
@@ -32,6 +34,15 @@
         {!! HTML::style('css/style-responsive.css') !!}
         {!! HTML::style('css/xcharts.min.css') !!}
         {!! HTML::style('css/jquery-ui-1.10.4.min.css') !!}
+        <!--kendo css-->
+        {!! HTML::style('kendoui/styles/kendo.silver.min.css') !!}
+        {!! HTML::style('kendoui/styles/kendo.common-bootstrap.min.css') !!}
+        {!! HTML::style('kendoui/styles/kendo.dataviz.min.css') !!}
+        {!! HTML::style('kendoui/styles/kendo.dataviz.bootstrap.min.css') !!}
+        {!! HTML::style('kendoui/styles/kendo.ez.css') !!}
+
+        <!--sweetalert2 css-->
+        {!! HTML::style('sweetalert/sweetalert2.min.css') !!}
     </head>
     <body>
         <!-- container section start -->
@@ -309,14 +320,16 @@
                     @yield('content')
                 </section>
             </section>
+
+            <!-- container section start -->
+            <section class="apx-loading">
+                @include('layouts.loading')
+            </section>
             <!--main content end-->
         </section>
-        <!-- container section start -->
-
         <!-- javascripts -->
         {!! HTML::script('js/jquery.js') !!}
         {!! HTML::script('js/jquery-ui-1.10.4.min.js') !!}
-        {!! HTML::script('js/jquery-1.8.3.min.js') !!}
         {!! HTML::script('js/jquery-ui-1.9.2.custom.min.js') !!}
         <!-- bootstrap -->
         {!! HTML::script('js/bootstrap.min.js') !!}
@@ -354,9 +367,25 @@
         {!! HTML::script('js/charts.js') !!}
         {!! HTML::script('js/jquery.slimscroll.min.js') !!}
 
-    @yield('script')
-  <script>/*
+        <!--kendo-->
+        {!! HTML::script('kendoui/js/kendo.all.min.js') !!}
 
+        <!--knockout-->
+        {!! HTML::script('js/knockout-3.4.0.js') !!}
+        {!! HTML::script('js/knockout.mapping.js') !!}
+        {!! HTML::script('js/knockout-kendo.min.js') !!}
+        <!--sweet alert-->
+        {!! HTML::script('sweetalert/sweetalert2.js') !!}
+        <!-- Core !-->
+        {!! HTML::script('js/core/registrasi.js') !!}
+    @yield('script')
+  <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+        /*
       //knob
       $(function() {
         $(".knob").knob({
