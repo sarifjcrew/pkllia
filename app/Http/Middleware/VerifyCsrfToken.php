@@ -12,6 +12,18 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'url'
     ];
+
+    /**
+     *
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return bool
+     */
+    protected function tokenMatch($request) {
+      $token = $request->ajax()? $request->header('X-CSRF-Token') : $request->input('_token');
+
+      return $request->session()->token() == $token;
+    }
 }
