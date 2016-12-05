@@ -14,7 +14,10 @@ class PtkLia extends Model
   *
   * @var array
   */
-  protected $fillable = ['nama','nik', 'jenisKelamin', 'tempatLahir', 'namaIbu', 'alamat',
+
+  protected $dates = ['tanggalLahir'];
+
+  protected $fillable = ['nama','nik', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'namaIbu', 'alamat',
    'kelurahanDesa', 'kecamatanKabupatenPropinsi', 'kodePos', 'agama', 'kewarganegaraan', 'statusPerkawinan',
    'namaSuamiIstri', 'pekerjaanSuamiIstri', 'statusKepegawaian', 'jenisPtk', 'statusAktif', 'lembagaPengangkat',
    'sumberGaji', 'punyaLisensiKepalaSekolah', 'pernahDiklatKepegawaian', 'keahlianBraille', 'hp', 'alamatEmail'

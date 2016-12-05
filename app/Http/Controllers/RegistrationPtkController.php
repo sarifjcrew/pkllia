@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Http\Requests;
+use Carbon\Carbon;
 
 //model
 use App\Pkllia\Models\PtkLia;
@@ -30,7 +31,7 @@ class RegistrationPtkController extends Controller
     $result['nik'] = $data['identitasPendidikDanTenagaKependidikan']['nik'];
     $result['jenisKelamin'] = $data['identitasPendidikDanTenagaKependidikan']['jenisKelamin'];
     $result['tempatLahir'] = $data['identitasPendidikDanTenagaKependidikan']['tempatLahir'];
-    // $result['tanggalLahir'] = $data['identitasPendidikDanTenagaKependidikan']['tanggalLahir'];
+    $result['tanggalLahir'] = Carbon::createFromFormat('Y-m-d', $data['identitasPendidikDanTenagaKependidikan']['tanggalLahir']);
     $result['namaIbu'] = $data['identitasPendidikDanTenagaKependidikan']['namaIbu'];
 
     $result['alamat'] = $data['dataPribadi']['alamat'];

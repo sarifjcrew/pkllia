@@ -64,7 +64,7 @@
                   <input class="form-control" data-bind="value: Registrasi.RegistrasiModel.identitasPendidikDanTenagaKependidikan.tempatLahir" placeholder="Tempat Lahir">
                 </div>
                 <div class="col-md-4 padding-right">
-                  <input class="form-control" data-bind="kendoDatePicker: Registrasi.RegistrasiModel.identitasPendidikDanTenagaKependidikan.tanggalLahir" placeholder="Tanggal Lahir">
+                  <input class="form-control" data-bind="kendoDatePicker: {value: Registrasi.RegistrasiModel.identitasPendidikDanTenagaKependidikan.tanggalLahir, format: 'dd/MM/yyyy'}" placeholder="Tanggal Lahir">
                 </div>
               </div>
             </div>
@@ -176,7 +176,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Status Aktif *</label>
             <div class="col-sm-10">
-              <input class="form-control" style="width: 100%" data-bind="kendoDropDownList: { dataTextField: 'nama', dataValueField: 'status_keaktifan_id', data: Registrasi.RefModel().StatusKeaktifanPegawai, value: Registrasi.RegistrasiModel.kepegawaian.statusKeaktifan, optionLabel: '--pilih status aktif--' }">
+              <input class="form-control" style="width: 100%" data-bind="kendoDropDownList: { dataTextField: 'nama', dataValueField: 'status_keaktifan_id', data: Registrasi.RefModel().StatusKeaktifanPegawai, value: Registrasi.RegistrasiModel.kepegawaian.statusAktif, optionLabel: '--pilih status aktif--' }">
             </div>
           </div>
           <div class="form-group">
@@ -204,11 +204,11 @@
             <label class="col-sm-2 control-label">Punya Lisensi Kepala Sekolah *</label>
             <div class="col-sm-10">
               <label class="radio-inline">
-                <input type="radio" value="true" name="lisensi-kepalasekolah" checked="" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.punyaLisensiKepalaSekolah">
+                <input type="radio" value="true" name="lisensi-kepalasekolah" checked="" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.punyaLisensiKepalaSekolah">
                 Ya
               </label>
               <label class="radio-inline">
-                <input type="radio" value="false" name="lisensi-kepalasekolah" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.punyaLisensiKepalaSekolah">
+                <input type="radio" value="false" name="lisensi-kepalasekolah" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.punyaLisensiKepalaSekolah">
                 Tidak
               </label>
             </div>
@@ -217,11 +217,11 @@
             <label class="col-sm-2 control-label">Pernah Mengikuti Diklat Kepegawaian *</label>
             <div class="col-sm-10">
               <label class="radio-inline">
-                <input type="radio" value="true" name="diklatkepegawaian" checked="" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.pernahDiklatKepegawaian">
+                <input type="radio" value="true" name="diklatkepegawaian" checked="" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.pernahDiklatKepegawaian">
                 Ya
               </label>
               <label class="radio-inline">
-                <input type="radio" value="false" name="diklatkepegawaian" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.pernahDiklatKepegawaian">
+                <input type="radio" value="false" name="diklatkepegawaian" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.pernahDiklatKepegawaian">
                 Tidak
               </label>
             </div>
@@ -230,11 +230,11 @@
             <label class="col-sm-2 control-label">Keahlian Braile *</label>
             <div class="col-sm-10">
               <label class="radio-inline">
-                <input type="radio" value="true" name="keahlianbraille" checked="" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.keahlianBraille">
+                <input type="radio" value="true" name="keahlianbraille" checked="" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.keahlianBraille">
                 Ya
               </label>
               <label class="radio-inline">
-                <input type="radio" value="false" name="keahlianbraille" data-bind="value: Registrasi.RegistrasiModel.kompetensiKhusus.keahlianBraille">
+                <input type="radio" value="false" name="keahlianbraille" data-bind="checked: Registrasi.RegistrasiModel.kompetensiKhusus.keahlianBraille">
                 Tidak
               </label>
             </div>
@@ -251,13 +251,13 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Nomor Hp *</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Nomor Handphone">
+              <input type="text" class="form-control" data-bind="value: Registrasi.RegistrasiModel.kontak.hp" placeholder="Nomor Handphone">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Alamat Email *</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Alamat Email">
+              <input type="text" class="form-control" data-bind="value: Registrasi.RegistrasiModel.kontak.alamatEmail" placeholder="Alamat Email">
             </div>
           </div>
         </form>
@@ -277,4 +277,9 @@
     </section>
   </div>
 </div>
+@endsection
+
+@section('script')
+<!-- Core !-->
+{!! HTML::script('js/core/registrasi.js') !!}
 @endsection

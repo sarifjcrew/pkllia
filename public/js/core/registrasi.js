@@ -5,7 +5,7 @@ var Registrasi = function(){
       nik : ko.observable(""),
       jenisKelamin : ko.observable("true"),
       tempatLahir : ko.observable(""),
-      tanggalLahir : ko.observable(new Date()),
+      tanggalLahir : ko.observable(new Date().toString()),
       namaIbu : ko.observable("")
     },
     dataPribadi : {
@@ -27,9 +27,9 @@ var Registrasi = function(){
       sumberGaji : ko.observable("")
     },
     kompetensiKhusus : {
-      punyaLisensiKepalaSekolah : ko.observable(""),
-      pernahDiklatKepegawaian : ko.observable(""),
-      keahlianBraille : ko.observable("")
+      punyaLisensiKepalaSekolah : ko.observable("false"),
+      pernahDiklatKepegawaian : ko.observable("false"),
+      keahlianBraille : ko.observable("false")
     },
     kontak : {
       hp : ko.observable(""),
@@ -51,6 +51,11 @@ var Registrasi = function(){
   var save = function(){
     return function(){
       var urlFull = '/pkllia/public/register'
+
+      RegistrasiModel.identitasPendidikDanTenagaKependidikan.tanggalLahir(moment(RegistrasiModel.identitasPendidikDanTenagaKependidikan.tanggalLahir()).format("YYYY-MM-DD"))
+
+      param = ko.mapping.toJS(RegistrasiModel)
+
       $.post(urlFull, ko.mapping.toJS(RegistrasiModel), function(data){
         swal({
           title: 'Sukses',

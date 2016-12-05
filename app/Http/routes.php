@@ -16,9 +16,11 @@ Route::get('/', function () {
 });
 
 Route::resource('register', 'RegistrationPtkController');
+Route::get('bukuinduk/ptk', 'BukuIndukPtkController@Ptk')->name('bukuindukptk');
 Route::resource('bukuinduk', 'BukuIndukPtkController');
 Route::resource('mutasi', 'MutasiPtkController');
 
 Route::group(['prefix' => 'api'], function(){
+  Route::get('ptk/all', '\App\Pkllia\Api\Ptk@GetPtk')->name('apiptkall');
   Route::resource('ptk', '\App\Pkllia\Api\Ptk');
 });

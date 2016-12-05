@@ -376,8 +376,10 @@
         {!! HTML::script('js/knockout-kendo.min.js') !!}
         <!--sweet alert-->
         {!! HTML::script('sweetalert/sweetalert2.js') !!}
-        <!-- Core !-->
-        {!! HTML::script('js/core/registrasi.js') !!}
+
+        <!-- moment -->
+        {!! HTML::script('js/moment.min.js') !!}
+
     @yield('script')
   <script>
     $.ajaxSetup({

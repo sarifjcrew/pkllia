@@ -22,6 +22,12 @@ class CreatePtkLiaTable extends Migration
             $table->date('tanggalLahir')->nullable();
             $table->string('namaIbu')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('noKartuKeluarga')->nullable();
+            $table->string('npwp')->nullable();
+            $table->string('nipSuamiIstri')->nullable();
+            $table->string('nrg')->nullable();
             $table->string('kelurahanDesa')->nullable();
             $table->string('kecamatanKabupatenPropinsi')->nullable();
             $table->string('kodePos')->nullable();
@@ -31,6 +37,13 @@ class CreatePtkLiaTable extends Migration
             $table->string('namaSuamiIstri')->nullable();
             $table->string('pekerjaanSuamiIstri')->nullable();
             $table->string('statusKepegawaian')->nullable();
+            $table->string('nip')->nullable();
+            $table->string('niyNigk')->nullable();
+            $table->string('nigb')->nullable();
+            $table->string('nuptk')->nullable();
+            $table->string('skPengangkat')->nullable();
+            $table->date('tmtPengangkat')->nullable();
+            $table->string('pangkatGolongan')->nullable();
             $table->string('jenisPtk')->nullable();
             $table->string('statusAktif')->nullable();
             $table->string('lembagaPengangkat')->nullable();
@@ -40,6 +53,8 @@ class CreatePtkLiaTable extends Migration
             $table->string('keahlianBraille')->nullable();
             $table->string('hp')->nullable();
             $table->string('alamatEmail')->nullable();
+            $table->string('noTelepon')->nullable();
+            $table->string('noFax')->nullable();
 
             $table->timestamps();
         });
