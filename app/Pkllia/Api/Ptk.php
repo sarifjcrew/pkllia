@@ -20,6 +20,9 @@ use App\Pkllia\Models\Pekerjaan;
 use App\Pkllia\Models\StatusKeaktifanPegawai;
 use App\Pkllia\Models\StatusKepegawaian;
 use App\Pkllia\Models\SumberGaji;
+use App\Pkllia\Models\JenjangPendidikan;
+use App\Pkllia\Models\StatusAnak;
+use App\Pkllia\Models\AnakPtkLia;
 
 class Ptk extends Controller
 {
@@ -50,7 +53,9 @@ class Ptk extends Controller
     $data['StatusKeaktifanPegawai'] = StatusKeaktifanPegawai::all();
     $data['StatusKepegawaian'] = StatusKepegawaian::all();
     $data['SumberGaji'] = SumberGaji::all();
-
+    $data['JenjangPendidikan'] = JenjangPendidikan::all();
+    $data['StatusAnak'] = StatusAnak::all();
+    $data['Anak']  = AnakPtkLia::where('ptk_id', $data['ptk']->id)->get();
     return (new Response($data));
   }
 

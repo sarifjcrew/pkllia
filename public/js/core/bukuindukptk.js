@@ -41,16 +41,27 @@ var BukuIndukPtk = function(){
     tempatLahir : ko.observable(),
     rt: ko.observable(),
     rw: ko.observable(),
-    nokartukeluarga: ko.observable(),
+    noKartuKeluarga: ko.observable(),
     npwp: ko.observable(),
     nrg : ko.observable(),
     nip : ko.observable(),
-    niynigk : ko.observable(),
+    niyNigk : ko.observable(),
     nigb : ko.observable(),
     nuptk : ko.observable(),
-    skpengangkat: ko.observable(),
-    tmtpengangkat: ko.observable(),
-    pangkatgolongan : ko.observable()
+    skPengangkat: ko.observable(),
+    tmtPengangkat: ko.observable(),
+    pangkatGolongan : ko.observable()
+  })
+
+  var anakModelSelected = ko.observable({
+    statusAnakId : ko.observable(),
+    nama : ko.observable(),
+    jenisKelamin : ko.observable("true"),
+    tempatLahir : ko.observable(),
+    jenjangPendidikanId : ko.observable(),
+    tanggalLahir : ko.observable(),
+    nisn : ko.observable(),
+    tahunMasuk : ko.observable()
   })
 
   var refModel = {
@@ -61,7 +72,9 @@ var BukuIndukPtk = function(){
     JenisPtk : ko.observableArray([]),
     StatusKeaktifanPegawai : ko.observableArray([]),
     LembagaPengangkat : ko.observableArray([]),
-    SumberGaji : ko.observableArray([])
+    SumberGaji : ko.observableArray([]),
+    JenjangPendidikan : ko.observableArray([]),
+    StatusAnak : ko.observableArray([])
   }
 
   var isLoading = function (what) {
@@ -74,6 +87,21 @@ var BukuIndukPtk = function(){
     nisn: "test",
     nama: "test"
   }]
+
+  var dataAnak = ko.observableArray([
+    {
+      status: "test",
+      jenjang: "test",
+      nisn: "test",
+      nama: "test"
+    },
+    {
+      status: "test1",
+      jenjang: "test1",
+      nisn: "test1",
+      nama: "test1"
+    }
+  ])
 
   var createGridAnak = function(data){
     $("#gridAnak").kendoGrid({
@@ -290,6 +318,11 @@ var BukuIndukPtk = function(){
     });
   }
 
+  var showModal = function(id) {
+    return function(){
+      $(id).modal("show")
+    }
+  }
   var awal = function(){
     isLoading(true)
     var urlFull = $("#urlPtkApi").val() +"/"+$("#Id").val()
@@ -303,6 +336,8 @@ var BukuIndukPtk = function(){
       refModel.StatusKeaktifanPegawai(data.StatusKeaktifanPegawai)
       refModel.LembagaPengangkat(data.LembagaPengangkat)
       refModel.SumberGaji(data.SumberGaji)
+      refModel.JenjangPendidikan(data.JenjangPendidikan)
+      refModel.StatusAnak(data.StatusAnak)
 
       bukuIndukModel(ko.mapping.fromJS(data.ptk))
 
@@ -337,8 +372,42 @@ var BukuIndukPtk = function(){
   }
 
   var save = function(){
+    var urlFull = '/pkllia/public/bukuinduk'
+
     param = ko.mapping.toJS(bukuIndukModel())
-    console.log(param.rt)
+    param.id = parseInt(param.id)
+    param.tanggalLahir = moment(param.tanggalLahir).format("YYYY-MM-DD")
+    param.agama = agama
+    param.kewarganegaraan = kewarganegaraan
+    param.pekerjaanSuamiIstri = pekerjaanSuamiIstri
+    param.statusKepegawaian = statusKepegawaian
+    param.jenisPtk = jenisPtk
+    param.statusAktif = statusKeaktifan
+    param.lembagaPengangkat = lembagaPengangkat
+    param.sumberGaji = sumberGaji
+
+    $.post(urlFull, param, function(data){
+      swal({
+        title: 'Sukses',
+        text: 'Sukses Insert Data',
+        type: 'success'
+      })
+    })
+  }
+
+  var saveAnak = function(){
+    var urlFull = '/pkllia/public/api/ptk/' + bukuIndukModel().id() + '/anak'
+
+    param = ko.mapping.toJS(anakModelSelected())
+    param.tanggalLahir = moment(param.tanggalLahir).format("YYYY-MM-DD")
+
+    $.post(urlFull, param, function(data){
+      swal({
+        title: 'Sukses',
+        text: 'Sukses Insert Data',
+        type: 'success'
+      })
+    })
   }
 
   var init = function(){
@@ -352,6 +421,7 @@ var BukuIndukPtk = function(){
     bukuIndukModel : bukuIndukModel,
     refModel : refModel,
     save : save,
+    saveAnak : saveAnak,
     agama : agama,
     kewarganegaraan : kewarganegaraan,
     pekerjaanSuamiIstri : pekerjaanSuamiIstri,
@@ -359,6 +429,9 @@ var BukuIndukPtk = function(){
     jenisPtk : jenisPtk,
     statusKeaktifan : statusKeaktifan,
     lembagaPengangkat : lembagaPengangkat,
-    sumberGaji : sumberGaji
+    sumberGaji : sumberGaji,
+    showModal : showModal,
+    anakModelSelected : anakModelSelected,
+    dataAnak : dataAnak,
   }
 }()

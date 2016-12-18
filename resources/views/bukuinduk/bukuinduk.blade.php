@@ -88,7 +88,7 @@
                     </div>
                   </form>
                   <div class="pull-right" style="margin-bottom: 10px;">
-                    <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                    <button class="btn btn-primary" data-bind="click: save"><i class="fa fa-save"></i> Simpan</button>
                     <button class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Cancel</button>
                   </div>
                   <div class="clearfix"></div>
@@ -148,7 +148,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">No Kartu Keluarga *</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().nokartukeluarga" placeholder="No Kartu Keluarga">
+                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().noKartuKeluarga" placeholder="No Kartu Keluarga">
                       </div>
                     </div>
                     <div class="form-group">
@@ -206,7 +206,7 @@
                     </div>
                   </form>
                   <div class="pull-right" style="margin-bottom: 10px;">
-                    <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                    <button class="btn btn-primary" data-bind="click: save"><i class="fa fa-save"></i> Simpan</button>
                     <button class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Cancel</button>
                   </div>
                   <div class="clearfix"></div>
@@ -238,7 +238,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">NIY/NIGK *</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().niynigk" placeholder="NIY/NIGK">
+                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().niyNigk" placeholder="NIY/NIGK">
                       </div>
                     </div>
                     <div class="form-group">
@@ -268,13 +268,13 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">SK Pengangkat *</label>
                       <div class="col-sm-10">
-                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().skpengangkat">
+                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().skPengangkat">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">TMT Pengangkat *</label>
                       <div class="col-sm-10">
-                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().tmtpengangkat">
+                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().tmtPengangkat">
                       </div>
                     </div>
                     <div class="form-group">
@@ -286,7 +286,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Pangkat Golongan *</label>
                       <div class="col-sm-10">
-                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().pangkatgolongan">
+                        <input class="form-control" style="width: 100%" data-bind="value: bukuIndukModel().pangkatGolongan">
                       </div>
                     </div>
                     <div class="form-group">
@@ -336,7 +336,7 @@
                     </div>
                   </form>
                   <div class="pull-right" style="margin-bottom: 10px;">
-                    <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                    <button class="btn btn-primary" data-bind="click: save"><i class="fa fa-save"></i> Simpan</button>
                     <button class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Cancel</button>
                   </div>
                   <div class="clearfix"></div>
@@ -356,7 +356,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">No. Telepon *</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().nomorTelepon" placeholder="Nomor Telephone">
+                        <input type="text" class="form-control" data-bind="value: bukuIndukModel().noTelepon" placeholder="Nomor Telephone">
                       </div>
                     </div>
                     <div class="form-group">
@@ -379,7 +379,7 @@
                     </div>
                   </form>
                   <div class="pull-right" style="margin-bottom: 10px;">
-                    <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                    <button class="btn btn-primary" data-bind="click: save"><i class="fa fa-save"></i> Simpan</button>
                     <button class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Cancel</button>
                   </div>
                   <div class="clearfix"></div>
@@ -393,12 +393,12 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="pull-right" style="margin-bottom:10px;">
-                        <button class="btn btn-primary">tambah baru</button>
+                        <button class="btn btn-primary" data-toogle="modal" data-target="#modalAnak" data-bind="click: showModal('#modalAnak')">tambah baru</button>
                       </div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="col-md-12">
-                      <div id="gridAnak">
+                      <div data-bind="kendoGrid: dataAnak">
                       </div>
                     </div>
                   </div>
@@ -517,6 +517,86 @@
                   </div>
                 </div>
               </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalAnak" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <form id="formAnak" class="form-horizontal">
+                <input type="hidden" name="anak_id" value="">
+                <input type="hidden" name="ptk_id" value="">
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-4" for="statusAnak">Status *</label>
+                  <div class="col-md-7 col-sm-7" data-bind="foreach: refModel.StatusAnak">
+                    <label class="radio-inline">
+                      <input type="radio" data-bind="value: status_anak_id, checked: BukuIndukPtk.anakModelSelected().statusAnakId">
+                      <span data-bind="text: nama"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="namaAnak">Nama Anak *</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input class="form-control input-sm" type="text" data-bind="value: anakModelSelected().nama" placeholder="Nama Anak"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-4" for="jenisKelaminAnak">Jenis Kelamin *</label>
+                  <div class="col-md-7 col-sm-7">
+                    <label class="radio-inline">
+                      <input type="radio" value="true" data-bind="checked: anakModelSelected().jenisKelamin">
+                      Laki-laki
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" value="false" data-bind="checked: anakModelSelected().jenisKelamin">
+                      Perempuan
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="tempatLahirAnak">Tempat Lahir</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input class="form-control input-sm" type="text" data-bind="value: anakModelSelected().tempatLahir" placeholder="Tempat Lahir" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="tanggalLahirAnak">Tanggal Lahir *</label>
+                    <div class="col-md-3 col-sm-4">
+                        <input class="form-control" data-bind="kendoDatePicker: {value: anakModelSelected().tanggalLahir, format: 'dd/MM/yyyy'}" placeholder="Tanggal Lahir">
+                        <span class="help-block">dd/mm/yyyy</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="jenjanganak">Jenjang *</label>
+                    <div class="col-md-7 col-sm-7">
+                      <input class="form-control" style="width: 100%" id="jenjangPendidikan" data-bind="kendoDropDownList: { dataTextField: 'nama', dataValueField: 'jenjang_pendidikan_id', data: refModel.JenjangPendidikan, value: anakModelSelected().jenjangPendidikanId, optionLabel: '--pilih jenjang--' }">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="nisnAnak">NISN</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input class="form-control input-sm" type="text" data-bind="value: anakModelSelected().nisn" maxlength="10" placeholder="NISN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-4" for="tahunMasukAnak">Tahun Masuk</label>
+                    <div class="col-md-2 col-sm-2">
+                        <input class="form-control input-sm" type="text" data-bind="value: anakModelSelected().tahunMasuk" maxlength="4" placeholder="Tahun Masuk"/>
+                    </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+              <button type="button" class="btn btn-primary" data-bind="click: saveAnak">Simpan</button>
             </div>
           </div>
         </div>
